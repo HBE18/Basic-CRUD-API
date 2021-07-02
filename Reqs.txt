@@ -1,0 +1,16 @@
+1-	Notepad++ indir kulan,
+2-	0 dan nodejs projesi  aç npm initiate et, tsc initiate et, 
+3-	Expressjs, typescript
+4-	User management api,
+5-	Get/id, post verdiğim değerlerle kullanıcı eklesin, delete, put, patch 
+6-	Timeout yapısı olsun
+7-	Config.json port, timeout,
+8-	Jestjs ile unit test yaz. Senaryo bazlı yaz.
+Vscode kullan.
+Moduler yaz, mümkün olduğunca class kullanma.
+
+
+Ekstralar:
+Proje hiyeararşini kur,
+(Launch.json, Settings.json bunlar .vscode içinde configurasyon) 
+-	Github veya bitbucket a projeyi pushla
