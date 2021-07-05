@@ -1,4 +1,10 @@
 {
-    "port" : "3000",
-    "timeout" : "10000"
+    "serverConfig":{
+        "port" : "3000",
+        "timeout" : "10000"
+    },
+    "dbConfig":{
+        "dbCall" : "",
+        "dbReq" : ""
+    }
 }
