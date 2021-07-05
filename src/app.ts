@@ -1,7 +1,9 @@
 import express from 'express';
+const config = require("../config.json");
+
 
 const app = express();
-var port = 3000; //added port as var since I will ask user to enter port num $default = 3000
+const port = config.port;
 app.use(express.json());
 
 //Basic get check on localhost
