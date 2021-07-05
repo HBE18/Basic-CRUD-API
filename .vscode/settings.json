@@ -9,26 +9,6 @@
         "**/.factorypath": true
     },
     "sonarlint.pathToNodeExecutable": "C:\\Program Files\\nodejs\\node.exe",
-    "launch": {
-        "configurations": [
-            {
-                "name": "Launch Chrome",
-                "request": "launch",
-                "type": "pwa-chrome",
-                "url": "http://localhost:8080",
-                "webRoot": "${workspaceFolder}"
-            },
-        {
-            "name": "Attach by Process ID",
-            "processId": "${command:PickProcess}",
-            "request": "attach",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "type": "pwa-node"
-        }
-        ]
-    },
     "explorer.confirmDelete": false,
     "workbench.statusBar.visible": false,
     "cSpell.userWords": [
@@ -45,5 +25,8 @@
     
     },
     "git.enableSmartCommit": true,
-    "debug.terminal.clearBeforeReusing": true
+    "debug.terminal.clearBeforeReusing": true,
+    "cSpell.ignoreWords": [
+        "dependencies"
+    ]
 }

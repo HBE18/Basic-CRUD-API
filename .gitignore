@@ -24,3 +24,5 @@ dist
 .dynamodb/
 # TernJS port file
 .tern-port
+#node module files
+/node_modules
