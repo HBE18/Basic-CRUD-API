@@ -1,4 +1,5 @@
 import express from 'express';
+import { HttpCode } from './constants';
 
 const config = require("../config.json");
 const app = express();
@@ -8,7 +9,7 @@ app.use(express.json());
 //Basic get check on localhost
 const msg = `App is running at http://localhost:${port}`;
 app.get("/",(req , res) => {
-    res.status(200).send(msg);
+    res.status(HttpCode.Success).send(msg);
 })
 console.log(msg);
 app.listen(port);
