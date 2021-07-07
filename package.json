@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/HBE18/Internship-V.01#readme",
   "dependencies": {
+    "argon": "^2.0.21",
+    "argon2": "^0.28.2",
     "express": "^4.17.1",
     "nodejs": "0.0.0",
     "shortid": "^2.2.16",
