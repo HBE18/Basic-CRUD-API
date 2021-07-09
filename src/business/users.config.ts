@@ -67,3 +67,4 @@ export function getUserByEmail(email: string) {
         return null;
     }
 }
+module.exports;
