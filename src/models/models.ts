@@ -26,3 +26,7 @@ export interface CRUD {
     deleteById: (id: string) => Promise<string>;
     patchById: (id: string, resource: any) => Promise<string>;
 }
+export interface UserResponse{
+    id: string;
+    email: string;
+}

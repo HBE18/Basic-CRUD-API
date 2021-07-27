@@ -1,7 +1,7 @@
 import express from "express";
 import * as uConfig from "../business/users.config"
 
-    async function validateSameEmailDoesntExist(
+    export async function validateSameEmailDoesntExist(
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
@@ -14,7 +14,7 @@ import * as uConfig from "../business/users.config"
         }
     }
 
-    async function validateSameEmailBelongToSameUser(
+    export async function validateSameEmailBelongToSameUser(
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
@@ -26,14 +26,13 @@ import * as uConfig from "../business/users.config"
         }
     }
 
-    async function userCantChangePermission(
+    export async function userCantChangePermission(
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
     ) {
         if (
-            'permissionFlags' in req.body &&
-            req.body.permissionFlags !== res.locals.user.permissionFlags
+            req.body.securityLevel !== res.locals.user.securityLevel
         ) {
             res.status(400).send({
                 errors: ['User cannot change permission flags'],
@@ -43,7 +42,7 @@ import * as uConfig from "../business/users.config"
         }
     }
 
-    var validatePatchEmail = async (
+    export var validatePatchEmail = async (
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
@@ -55,7 +54,7 @@ import * as uConfig from "../business/users.config"
         }
     };
 
-    async function validateUserExists(
+    export async function validateUserExists(
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
@@ -71,12 +70,12 @@ import * as uConfig from "../business/users.config"
         }
     }
 
-    async function extractUserId(
+    export async function extractUserId(
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
     ) {
-        req.body.id = req.params.userId;
+        req.params.id = req.params.userId;
         next();
     }
 

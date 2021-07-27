@@ -27,3 +27,5 @@ dist
 #node module files
 /node_modules
 /out
+out/app.js
+out/app.js
