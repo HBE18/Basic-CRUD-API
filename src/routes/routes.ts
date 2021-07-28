@@ -7,7 +7,7 @@ const userRouter = express.Router();
 userRouter
 .route("/users")
 .get(control.listUsers)
-.post(mid.validateSameEmailDoesntExist,control.createUser)
+.post(control.createUser)//mid.validateSameEmailDoesntExist,
 
 
 userRouter

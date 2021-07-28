@@ -15,7 +15,7 @@ const pool = new Pool(poolConfig);
 const msg = `App is running at http://localhost:${port}`;
 
 app.get("/", async (req, res) => {
-    res.status(HttpCode.Success);
+    res.status(HttpCode.Success).send(msg);
 })
 
 

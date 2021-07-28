@@ -17,7 +17,7 @@ const pool = new pg_1.Pool(poolConfig);
 //Basic get check on localhost
 const msg = `App is running at http://localhost:${port}`;
 app.get("/", async (req, res) => {
-    res.status(constants_1.HttpCode.Success);
+    res.status(constants_1.HttpCode.Success).send(msg);
 });
 console.log(msg);
 app.listen(port);

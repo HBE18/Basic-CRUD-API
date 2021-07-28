@@ -1,5 +1,4 @@
 export interface UserInsert {
-    id: string;
     email: string;
     password: string;
     firstName?: string;
@@ -8,8 +7,7 @@ export interface UserInsert {
 }
 
 export interface UserUpdate {
-    id: string;
-    email?: string;
+    email: string;
     password?: string;
     firstName?: string;
     lastName?: string;

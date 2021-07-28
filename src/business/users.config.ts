@@ -1,7 +1,7 @@
 import express, { response }  from "express";
 import * as models from "../models/models";
 import shortid from "shortid";
-import { Pool } from "pg";
+import { Client, Pool } from "pg";
 
 const pool = new Pool({
     user : "postgres",
@@ -12,78 +12,82 @@ const pool = new Pool({
     connectionTimeoutMillis: 10000
 });
 const app = express();
-// const users: Array<UserInsert> = [];
 
 export function addUser(user: models.UserInsert): string{
-    user.id = shortid.generate();
+    const userid = shortid.generate();
     try {
         pool.connect((error,client,release) => {
-            client.query<{
-                id: string;
-                name: string;
-            }>(`INSERT INTO USERS `);
+        client.query<{
+            email: string;
+            password?: string;
+            firstName?: string;
+            lastName?: string;
+            securityLevel: number;
+        }>(`INSERT INTO USERS(userid,email,pass,firstName,lastName,securityLevel) 
+        VALUES ('${1}', '${2}', '${3}', '${4}', '${5}', ${6})`,[userid,user.email,user.password,user.firstName,user.lastName,user.securityLevel]);
+        release();
     })
     } catch (error) {
         console.error(error);
     }
-    return user.id;
+    return userid;
 }
 
 export async function getUsers() {
-    const users = await pool.query('SELECT * FROM USERS');
-    return users;
-    // return users;
+    try {
+        const users =
+        await pool.query('SELECT userid,email,pass,firstName,lastName,securityLevel FROM USERS');
+        return users;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 export async function getUserById(userId: string) {
     try {
-        const user = await pool.query(`SELECT * FROM USERS WHERE userid = ${userId}`);
+        const user = await pool.query(`SELECT userid,email,pass,firstName,lastName,securityLeve FROM USERS WHERE userid = ${1}`,[userId]);
     return user.rows;
     } catch (error) {
         console.error(error)
     }
-
-    // return users.find((user: { id: string }) => user.id === userId);
 }
 
-export function putUserById(userId: string, user: models.UserInsert) {
-
-/*     const objIndex = users.findIndex(
-        (obj: { id: string }) => obj.id === userId
-    );
-    users.splice(objIndex, 1, user);
-    return `${user.id} updated via put`; */
+export async function putUserById(userId: string, user: models.UserUpdate):Promise<string> {
+    const resp = await pool.connect((error,client,release) => {
+        client.query<{
+            email: string;
+            password?: string;
+            firstName?: string;
+            lastName?: string;
+            securityLevel: number;
+        }>(`UPDATE USERS SET userid = '${1}',email = '${2}',pass = '${3}',firstName = '${4}',lastName = '${5}',securityLevel = '${6}'WHERE userid = ${7}`,
+        [userId,user.email,user.password,user.firstName,user.lastName,user.securityLevel,userId]);
+        release();
+    });
+    return userId;
 }
 
-export function patchUserById(userId: string, user: models.Patch) {
-
-/*     const objIndex = users.findIndex(
-        (obj: { id: string }) => obj.id === userId
-    );
-    let currentUser = users[objIndex];
-    const allowedPatchFields = [
-        'password',
-        'firstName',
-        'lastName',
-        'permissionLevel',
-    ];
-    for (let field of allowedPatchFields) {
-        if (field in user) {
-            // @ts-ignore
-            currentUser[field] = user[field];
-        }
-    }
-    users.splice(objIndex, 1, currentUser);
-    return `${user.id} patched`; */
+export async function patchUserById(userId: string, user: models.Patch) : Promise<string> {
+    const resp = await pool.connect((error,client,release) => {
+        client.query<{
+            email: string;
+            password?: string;
+            firstName?: string;
+            lastName?: string;
+            securityLevel: number;
+        }>(``);
+        release();
+    })
+    return userId;
 }
 
-export function removeUserById(userId: string) {
+export async function removeUserById(userId: string) {
 
-/*     const objIndex = users.findIndex(
-        (obj: { id: string }) => obj.id === userId
-    );
-    users.splice(objIndex, 1);
-    return `${userId} removed`; */
+    const resp = await pool.connect((error,client,release) => {
+        client.query<{
+            userid : string;
+        }>(`DELETE FROM USERS WHERE userid = '${1}'`,[userId]);
+    })
 }
 
 export function getUserByEmail(email: string) {
