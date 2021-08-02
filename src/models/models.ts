@@ -6,6 +6,8 @@ export interface UserInsert {
     securityLevel: number;
 }
 
+export type User = UserUpdate & {userid: string};
+
 export interface UserUpdate {
     email: string;
     password?: string;
@@ -14,7 +16,7 @@ export interface UserUpdate {
     securityLevel: number;
 }
 
-export interface Patch extends Partial<UserUpdate> {}
+export interface Patch extends Partial<UserUpdate>{} 
 
 export interface CRUD {
     list: (limit: number, page: number) => Promise<any>;
@@ -26,5 +28,9 @@ export interface CRUD {
 }
 export interface UserResponse{
     id: string;
+    email: string;
+}
+
+export interface emailRequest{
     email: string;
 }

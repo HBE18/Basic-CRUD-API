@@ -1,5 +1,5 @@
 import express from "express";
-import * as uConfig from "../business/users.config"
+import * as uConfig from "../business/main"
 
     export async function validateSameEmailDoesntExist(
         req: express.Request,

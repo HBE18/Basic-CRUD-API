@@ -7,13 +7,14 @@ const userRouter = express.Router();
 userRouter
 .route("/users")
 .get(control.listUsers)
-.post(control.createUser)//mid.validateSameEmailDoesntExist,
+.post(mid.validateSameEmailDoesntExist,control.createUser)
 
 
 userRouter
 .route("/users/:userId")
 .get(mid.validateUserExists,mid.extractUserId,control.getUserById)
 .patch(mid.validatePatchEmail,control.patch)
+.put(mid.validateUserExists,control.put)
 .delete(mid.validateUserExists,control.removeUser)
 
 export default userRouter;

@@ -1,35 +1,38 @@
 import express from "express";
-import * as business from "../business/users.config"
+import * as business from "../business/main"
 import { HttpCode } from "../constants";
 
-export function listUsers(req: express.Request, res: express.Response) {
-    const users = business.getUsers();
-    res.status(HttpCode.Success).json(users);
+export async function listUsers(req: express.Request, res: express.Response) {
+    const users = await business.getUsers();
+    if(users != undefined){
+        res.status(HttpCode.Success).json(users.rows);
+    }
+    else{
+        res.status(HttpCode.NoContent).send("List operation failed");
+    }
 }
-export function getUserById(req: express.Request, res: express.Response) {
-    const user =  business.getUserById(req.body.id);
+export async function getUserById(req: express.Request, res: express.Response) {
+    const user = await  business.getUserById(req.params.id);
     res.status(HttpCode.Success).json(user);
 }
 export function createUser(req: express.Request, res: express.Response) {
-    // req.body.password;
+    //req.body.password;
     const userId = business.addUser(req.body);
     res.status(HttpCode.Created).json({ id: userId });
 }
-export function patch(req: express.Request, res: express.Response) {
-    if (req.body.password) {
-        res.status(HttpCode.Success).send("Patch");
-    }
-    const resp = (business.patchUserById(req.body.id, req.body));
-    res.status(HttpCode.NoContent).json();
+export async function patch(req: express.Request, res: express.Response) {
+    const rep = await business.patchUserById(req.body.userid, req.body)
+    console.log(rep);
+    res.status(HttpCode.Success).json(`User ${rep} has updated by Patch`);
 }
 export async function put(req: express.Request, res: express.Response) {
-    const rep = await business.putUserById(req.body.id, req.body)
+    const rep = await business.putUserById(req.body.userid, req.body)
     console.log(rep);
     res.status(HttpCode.Success).json(`User ${rep} has updated by PUT`);
 }
 export async function removeUser(req: express.Request, res: express.Response) {
-    console.log(await business.removeUserById(req.body.id));
-    res.status(HttpCode.NoContent).send();
+    await business.removeUserById(req.params.userId);
+    res.status(HttpCode.Success).send();
 }
 
 module.exports;
