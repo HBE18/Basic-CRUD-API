@@ -9,6 +9,26 @@
       "outFiles": ["${workspaceFolder}/out/**/*.js"],
       "autoAttachChildProcesses": true,
       "outputCapture": "std"
-    }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest File",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "windows": {
+          "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+      },
+      "args": [
+          "--runInBand",
+          "${input:jestfile}.js"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "outputCapture": "std",
+      "outFiles": [
+          "${workspaceFolder}/out/**/*.js"
+      ],
+  },
   ]
 }

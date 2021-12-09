@@ -13,16 +13,13 @@
     "workbench.statusBar.visible": true,
     "cSpell.userWords": [
         "berkan",
-        "daos",
         "ero",
         "eroğlu",
         "hasan",
-        "jsxdev",
         "lu"
     ],
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorCustomizations": {
-    
     },
     "git.enableSmartCommit": true,
     "debug.terminal.clearBeforeReusing": true,

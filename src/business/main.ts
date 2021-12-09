@@ -88,7 +88,7 @@ export async function patchUserById(userId: string, user: models.Patch): Promise
             lastName : user.lastName ?? alpha.lastName,
             securityLevel : user.securityLevel ?? alpha.securityLevel
         } as models.UserUpdate;
-    putUserById(userId,updatedUser)
+    await putUserById(userId,updatedUser)
     return userId;
 }
 
